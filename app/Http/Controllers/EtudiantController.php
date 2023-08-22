@@ -13,7 +13,8 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        //
+        $etudiants = Etudiant::all();
+        return view('admin.etudiants.index', compact('etudiants'));
     }
 
     /**
@@ -21,7 +22,7 @@ class EtudiantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.etudiants.create');
     }
 
     /**
@@ -29,7 +30,28 @@ class EtudiantController extends Controller
      */
     public function store(StoreEtudiantRequest $request)
     {
-        //
+        // dd($request->all());
+        // Méthode 1
+        //$etudiant = Etudiant::create($request->all());
+
+        // Methode 2
+        $etudiant = new Etudiant;
+        $etudiant->nom = $request->nom;
+        $etudiant->prenom = $request->prenom;
+        $etudiant->age = $request->age;
+        $etudiant->filiere_id = $request->filiere_id;
+        $etudiant->save();
+
+
+        // m3
+        // $etudiant = Etudiant::create([
+        //     'nom' => $request->nom,
+        //     'prenom' => $request->prenom,
+        //     'age' => $request->age,
+        // ]);
+
+        return redirect()->route('etudiants.index');
+
     }
 
     /**
@@ -37,7 +59,7 @@ class EtudiantController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        //
+        return view('admin.etudiants.show', compact('etudiant'));
     }
 
     /**
@@ -45,7 +67,7 @@ class EtudiantController extends Controller
      */
     public function edit(Etudiant $etudiant)
     {
-        //
+        return view('admin.etudiants.edit', compact('etudiant'));
     }
 
     /**
@@ -53,7 +75,15 @@ class EtudiantController extends Controller
      */
     public function update(UpdateEtudiantRequest $request, Etudiant $etudiant)
     {
-        //
+        // Methode 2
+        $etudiant = Etudiant::find($etudiant->id);
+        $etudiant->nom = $request->nom;
+        $etudiant->prenom = $request->prenom;
+        $etudiant->age = $request->age;
+        $etudiant->filiere_id = $request->filiere_id;
+        $etudiant->save();
+
+        return redirect()->route('etudiants.show', $etudiant);
     }
 
     /**
@@ -61,6 +91,7 @@ class EtudiantController extends Controller
      */
     public function destroy(Etudiant $etudiant)
     {
-        //
+        $etudiant->delete();
+        return redirect()->route('etudiants.index');
     }
 }

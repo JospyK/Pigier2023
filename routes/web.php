@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/home', [PagesController::class, 'home'])->name('home');
+Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+Route::post('/contactPost', [PagesController::class, 'contactPost'])->name('contactPost');
 
 require __DIR__.'/auth.php';

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Filiere extends Model
+class Module extends Model
 {
     use HasFactory;
 
@@ -14,10 +14,13 @@ class Filiere extends Model
     ];
 
         /**
-     * Get the post that owns the comment.
+     * Etudiants ayants suivi ce module
      */
     public function etudiants()
     {
-        return $this->hasMany(Etudiant::class);
+        return $this->belongsToMany(Etudiant::class);
     }
+
+
+
 }

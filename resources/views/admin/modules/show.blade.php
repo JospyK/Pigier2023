@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Filiere</h1>
+            <h1>Module</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/home">Home</a></li>
-              <li class="breadcrumb-item active">Filieres</li>
+              <li class="breadcrumb-item active">Modules</li>
             </ol>
           </div>
         </div>
@@ -28,7 +28,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Détail d'une filiere</h3>
+          <h3 class="card-title">Détail d'un module</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -42,29 +42,29 @@
         <div class="card-body">
 
         <ul>
-            <li>nom: {{$filiere->nom}}</li>
+            <li>nom: {{$module->nom}}</li>
 
         </ul>
 
         <hr>
-        <h5>Liste des etudiants de cette filiere</h5>
+        <h5>Liste des etudiants de ce module</h5>
         <table class="table mt-3">
             <thead>
                 <tr>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Âge</th>
-                    <th>filiere</th>
+                    <th>module</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($filiere->etudiants as $etudiant)
+                @foreach ($module->etudiants as $etudiant)
                 <tr>
                     <td>{{ $etudiant->nom }}</td>
                     <td>{{ $etudiant->prenom }}</td>
                     <td>{{ $etudiant->age }}</td>
-                    <td>{{ $etudiant->filiere_id }}</td>
+                    <td>{{ $etudiant->module_id }}</td>
                     <td>
                         <a href="{{ route('etudiants.show', $etudiant) }}" class="btn btn-info">Voir</a>
                         <a href="{{ route('etudiants.edit', $etudiant) }}" class="btn btn-primary">Modifier</a>

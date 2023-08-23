@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Etudiant</h1>
+            <h1>Filiere</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -28,7 +28,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Creation d'un étudiant</h3>
+          <h3 class="card-title">Creation d'un module</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -40,33 +40,14 @@
           </div>
         </div>
         <div class="card-body">
-          <form action="{{route('etudiants.store')}}" method="post">
+          <form action="{{route('modules.store')}}" method="post">
             @csrf
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
                 <input type="text" class="form-control" id="nom" name="nom" required>
             </div>
 
-            <div class="mb-3">
-                <label for="prenom" class="form-label">Prénom</label>
-                <input type="text" class="form-control" id="prenom" name="prenom" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="age" class="form-label">Âge</label>
-                <input type="number" class="form-control" id="age" name="age" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="filiere" class="form-label">Filiere</label>
-                <select name="filiere_id" id="select_id" class="form-control">
-                    @foreach ($filieres as $filiere)
-                    <option value="{{$filiere->id}}" >{{$filiere->nom}}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Créer l'etudiant</button>
+            <button type="submit" class="btn btn-primary">Créer le module</button>
         </form>
         </div>
         <!-- /.card-body -->

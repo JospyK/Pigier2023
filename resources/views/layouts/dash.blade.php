@@ -237,6 +237,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('modules.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Modules
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
 
             <ul class="nav nav-treeview">
               <li class="nav-item">

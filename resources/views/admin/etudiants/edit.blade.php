@@ -58,7 +58,21 @@
                 <input type="number" class="form-control" id="age" name="age" value="{{ $etudiant->age }}" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Créer l'etudiant</button>
+            <div class="mb-3">
+                <label for="filiere" class="form-label">Filiere</label>
+                <select name="filiere_id" id="filiere" class="form-control">
+                    @foreach ($filieres as $filiere)
+                    <option value="{{$filiere->id}}"
+                    {{-- {{ $filiere->id == $etudiant->filiere_id ? selected : '' }} --}}
+                    @if ($filiere->id == $etudiant->filiere_id)
+                    selected
+                    @endif
+                    >{{$filiere->nom}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Modifier l'etudiant</button>
         </form>
         </div>
         <!-- /.card-body -->

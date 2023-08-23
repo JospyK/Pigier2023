@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Http\Requests\StoreEtudiantRequest;
 use App\Http\Requests\UpdateEtudiantRequest;
+use App\Models\Filiere;
 
 class EtudiantController extends Controller
 {
@@ -22,7 +23,8 @@ class EtudiantController extends Controller
      */
     public function create()
     {
-        return view('admin.etudiants.create');
+        $filieres = Filiere::all();
+        return view('admin.etudiants.create', compact("filieres"));
     }
 
     /**
@@ -59,7 +61,8 @@ class EtudiantController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        return view('admin.etudiants.show', compact('etudiant'));
+        $nom_filiere = Filiere::find($etudiant->filiere_id)->nom;
+        return view('admin.etudiants.show', compact('etudiant', 'nom_filiere'));
     }
 
     /**
@@ -67,7 +70,8 @@ class EtudiantController extends Controller
      */
     public function edit(Etudiant $etudiant)
     {
-        return view('admin.etudiants.edit', compact('etudiant'));
+        $filieres = Filiere::all();
+        return view('admin.etudiants.edit', compact("filieres", 'etudiant'));
     }
 
     /**

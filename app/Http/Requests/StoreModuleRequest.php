@@ -22,7 +22,8 @@ class StoreModuleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nom' => 'required|unique:modules|min:3|max:100',
+            //'body' => 'required',
         ];
     }
 }

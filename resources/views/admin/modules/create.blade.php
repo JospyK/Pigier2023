@@ -44,7 +44,16 @@
             @csrf
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="nom" name="nom" required>
+                <input type="text" class="form-control" id="nom" name="nom" value="{{old('nom')}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="etudiant" class="form-label">Etudiants</label>
+                <select name="etudiants[]" id="select_id" class="form-control" multiple>
+                    @foreach ($etudiants as $etudiant)
+                    <option value="{{$etudiant->id}}" >{{$etudiant->nom}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Créer le module</button>

@@ -151,7 +151,56 @@
       </li>
     </ul>
   </nav>
-  <!-- /.navbar -->
+
+  {{-- <nav class="main-header navbar navbar-expand">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <div class="alert alert-danger">test</div>
+    </li>
+    </ul>
+    </nav>
+  <!-- /.navbar --> --}}
+
+  @if(session('success'))
+  <nav class="main-header navbar navbar-expand">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+    </li>
+    </ul>
+    </nav>
+  @endif
+
+  @if(session('danger'))
+  <nav class="main-header navbar navbar-expand">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <div class="alert alert-danger" role="alert">{{ session('danger') }}</div>
+    </li>
+    </ul>
+    </nav>
+  @endif
+
+  @if($errors->count() > 0)
+  <nav class="main-header navbar navbar-expand">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <div class="alert alert-danger" role="alert">
+            <ul class="list-unstyled">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </li>
+    </ul>
+    </nav>
+  @endif
+
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -374,6 +423,9 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+
+
 
   @yield('content')
 

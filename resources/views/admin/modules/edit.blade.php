@@ -45,7 +45,20 @@
             @method('PUT')
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="nom" name="nom" value="{{ $module->nom }}" required>
+                <input type="text" class="form-control" id="nom" name="nom" value="{{old('nom',  $module->nom) }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="etudiant" class="form-label">Etudiants</label>
+                <select name="etudiants[]" id="select_id" class="form-control" multiple>
+                    @foreach ($etudiants as $etudiant)
+                    <option value="{{$etudiant->id}}"
+                        {{-- @if($etudiant->id appartient a la liste $module->etudiants)
+                        selected
+                        @endif --}}
+                    >{{$etudiant->nom}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Créer le module</button>

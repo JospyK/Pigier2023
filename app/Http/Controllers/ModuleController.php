@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Module;
 use App\Http\Requests\StoreModuleRequest;
 use App\Http\Requests\UpdateModuleRequest;
+use App\Models\Etudiant;
+use Session;
 
 class ModuleController extends Controller
 {
@@ -22,7 +24,8 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('admin.modules.create');
+        $etudiants = Etudiant::all();
+        return view('admin.modules.create', compact('etudiants'));
     }
 
     /**
@@ -30,17 +33,21 @@ class ModuleController extends Controller
      */
     public function store(StoreModuleRequest $request)
     {
-        // dd($request->all());
+        //dd($request->all());
         // Méthode 1
         //$module = Module::create($request->all());
 
         // Methode 2
         $module = new Module;
         $module->nom = $request->nom;
+
         $module->save();
 
-        return redirect()->route('modules.index');
+        $module->etudiants()->sync($request->etudiants);
 
+        Session::flash('success', 'Module crée avec succes.');
+
+        return redirect()->route('modules.index');
     }
 
     /**
@@ -56,7 +63,8 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        return view('admin.modules.edit', compact('module'));
+        $etudiants = Etudiant::all();
+        return view('admin.modules.edit', compact('module', 'etudiants'));
     }
 
     /**
@@ -69,6 +77,10 @@ class ModuleController extends Controller
         $module->nom = $request->nom;
         $module->save();
 
+        $module->etudiants()->sync($request->etudiants);
+
+        Session::flash('success', 'Module est édité correctement.');
+
         return redirect()->route('modules.show', $module);
     }
 
@@ -78,6 +90,7 @@ class ModuleController extends Controller
     public function destroy(Module $module)
     {
         $module->delete();
+        Session::flash('danger', 'Module supprimé.');
         return redirect()->route('modules.index');
     }
 }

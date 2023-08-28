@@ -47,7 +47,8 @@
         </ul>
 
         <hr>
-        <h5>Liste des etudiants de ce module</h5>
+        <h5>Liste des etudiants de ce module ({{$module->etudiants->count()}})</h5>
+        <h5>Moyenne d'age: ({{$module->etudiants->avg('age')}})</h5>
         <table class="table mt-3">
             <thead>
                 <tr>
